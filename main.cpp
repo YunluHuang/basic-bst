@@ -54,8 +54,8 @@ void test_remove() {
   BST bst = BST(data, 10);
   if(bst.remove(11)) {
     printf("Fail, 11 is not in the bst\n");
-  } else if (!bst.remove(0)) {
-    printf("Fail, 0 is in the bst\n");
+  } else if (!bst.remove(1)) {
+    printf("Fail, 1 is in the bst\n");
   }
   if(bst.size != 9) {
     printf("Fail\n");

@@ -22,6 +22,22 @@ bool BST::find(int data) {
 
 bool BST::remove(int data) {
   if(!root) return false;
+
+  if(root->data == data) {
+    if(!root->left) {
+      root = root->right;
+    } else if(!root->right) {
+      root = root->left;
+    } else {
+      BSTNode *temp = root->removeSuccessor();
+      temp->left = root->left;
+      temp->right = root->right;
+      root = temp;
+    }
+    size--;
+    return true;
+  }
+  
   BSTNode *dummy = 0;
   bool success = root->remove(data, dummy);
   if(success) size--;

@@ -11,6 +11,22 @@ BSTNode * BSTNode::getSuccessor() {
   return curr;
 }
 
+BSTNode * BSTNode::removeSuccessor() {
+  if(!this->right) return 0;
+  BSTNode *parent = this;
+  BSTNode *successor = this->right;
+  if(!successor->left) {
+    parent->right = successor->right;
+  } else {
+    while(successor->left) {
+      parent = successor;
+      successor = successor->left;
+    }
+    parent->left = successor->right;
+  }
+  return successor;
+}
+
 bool BSTNode::insert(int data) {
   if(data == this->data) return false;
   if(data > this->data) {
@@ -47,10 +63,11 @@ bool BSTNode::remove(int data, BSTNode * &parent) {
     } else if(!right) {
       replaceNode = left;
     } else if (left && right) {
-      replaceNode = getSuccessor();
+      replaceNode = removeSuccessor();
       replaceNode->left = left;
       replaceNode->right = right;
     }
+
     if(data < parent->data) {
       parent->left = replaceNode;
     } else {

@@ -11,6 +11,10 @@ public:
   ~BSTNode();
 
   BSTNode * getSuccessor();
+  /**
+    find the successor and remove it from the tree
+  */
+  BSTNode * removeSuccessor();
   // BSTNode * getPredessor();
 
   bool insert(int data);
